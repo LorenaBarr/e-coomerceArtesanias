@@ -42,7 +42,6 @@ THIRD_PARTY_APPS = [
     'storages',
 ]
 
-
 # para no confundirme aquiva a estar toda las aplicaciones que vamos a utilizar
 INSTALLED_APPS += PROJECT_APPS + THIRD_PARTY_APPS
 
