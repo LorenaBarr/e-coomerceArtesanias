@@ -125,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Lima'
 
 USE_I18N = True
 
@@ -156,6 +156,6 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITEELIST = 'http://localhost:3000'
-CSRF_TRUSTED_ORIGINS = 'http://localhost:3000'
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
