@@ -42,7 +42,10 @@ INSTALLED_APPS = [
 ]
 
 PROJECT_APPS = [
-
+    'apps.user',
+    'apps.product',
+    'apps.order',
+    'apps.message',
 ]
 
 THIRD_PARTY_APPS = [
