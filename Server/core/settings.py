@@ -10,16 +10,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9zekrmlx&1t+!$!@bk59&0f#3vr3d0b+899d9qi-ud!bfrm^yv'
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -28,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
+    
 PROJECT_APPS = [
     'apps.user',
     'apps.product',
@@ -112,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Lima'
 
 USE_I18N = True
 
@@ -143,6 +140,6 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITEELIST = 'http://localhost:3000'
-CSRF_TRUSTED_ORIGINS = 'http://localhost:3000'
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

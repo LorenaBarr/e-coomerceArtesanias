@@ -11,11 +11,5 @@ class User(models.Model):
     email = models.CharField(max_length=100)  # Corregido de 'email'
     contact = models.CharField(max_length=20)
     password = models.CharField(max_length=128)
-    def save(self, *args, **kwargs):
-        # Antes de guardar el usuario, hasheamos la contraseña si es nueva o ha cambiado
-        if self.pk is None or 'password' in kwargs:
-            self.password = make_password(self.password)
-        super().save(*args, **kwargs)
-
     def __str__(self):
         return self.userName
