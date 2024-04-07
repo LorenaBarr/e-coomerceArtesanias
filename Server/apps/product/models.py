@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Product(models.Model):
     productID = models.AutoField(primary_key=True)
     productName = models.CharField(max_length=100)

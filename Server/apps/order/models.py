@@ -1,5 +1,4 @@
 from django.db import models
-
 class Order(models.Model):
     orderID = models.AutoField(primary_key=True)
     total = models.DecimalField(max_digits=10, decimal_places=2)

@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Message(models.Model):
     userID = models.ForeignKey('user.User', on_delete=models.CASCADE)
     email = models.CharField(max_length=100)
