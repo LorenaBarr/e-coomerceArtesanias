@@ -15,12 +15,15 @@ Nuestra plantilla de E-Commerce está diseñada para adaptarse a las necesidades
 - **React**: Empleamos React, una biblioteca de JavaScript de código abierto, para construir un frontend interactivo y receptivo que brinda una experiencia de usuario fluida.
 - **Trello**: Utilizamos Trello como herramienta de gestión de proyectos para mantenernos organizados y coordinados durante el desarrollo.
 - **Figma**: Empleamos Figma para el diseño de la interfaz de usuario, permitiéndonos crear prototipos y colaborar de manera efectiva en el diseño visual de la plantilla.
+
+### Comunicación:
+
 - **Slack**: Utilizamos Slack como plataforma de comunicación en equipo, facilitando la colaboración y la resolución de problemas de manera eficiente.
 - **WhatsApp**: Empleamos WhatsApp como una forma adicional de comunicación rápida y directa entre los miembros del equipo, asegurando una colaboración fluida.
 
 ### Integrantes del Equipo:
 
-- **[Nombre del integrante]**: Desarrollador backend.
+- **Gabriela Peralta**: Desarrolladora backend - https://www.linkedin.com/in/gabriela-peralta54223/
 - **[Nombre del integrante]**: Desarrollador frontend
 
 
