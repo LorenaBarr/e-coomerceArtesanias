@@ -24,6 +24,7 @@ Nuestra plantilla de E-Commerce está diseñada para adaptarse a las necesidades
 ### Integrantes del Equipo:
 
 - **Gabriela Peralta**: Desarrolladora backend - https://www.linkedin.com/in/gabriela-peralta54223/
+- **Samsa Ahuerma**: Desarrolladora backend - https://www.linkedin.com/in/samsaahuerma/
 - **[Nombre del integrante]**: Desarrollador frontend
 
 
