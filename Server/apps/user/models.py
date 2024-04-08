@@ -9,7 +9,7 @@ class User(models.Model):
     userID = models.AutoField(primary_key=True)  
     userName = models.CharField(max_length=100)
     email = models.CharField(max_length=100)  # Corregido de 'email'
-    contact = models.CharField(max_length=20)
-    password = models.CharField(max_length=128)
+    #contact = models.CharField(max_length=20)
+    password = models.CharField(max_length=256)
     def __str__(self):
         return self.userName

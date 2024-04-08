@@ -5,7 +5,7 @@ from rest_framework import permissions
 from .models import User
 
 class listUsersView(APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         if  User.objects.all().exists():
