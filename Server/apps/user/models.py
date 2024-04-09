@@ -6,9 +6,13 @@ class User(models.Model):
         verbose_name = 'User'
         verbose_name_plural = 'Users'
 
-    userID = models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='User ID')  
-    userName = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)  
+    userID = models.AutoField(primary_key=True)
+    userName = models.CharField(max_length=255)
+    email = models.CharField(max_length=100, unique=True)  
     password = models.CharField(max_length=256)
+
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        super().save(*args, **kwargs)
     def __str__(self):
         return self.userName
