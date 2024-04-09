@@ -3,5 +3,5 @@ from .views import *
 
 urlpatterns = [
     path('register/', RegisterUser.as_view(), name='register'),
-    path('login/', LoginUser.as_view(), name='login'),
+    path('login/', LoginUser.as_view(), name='login'),#login necesita username y password
 ]

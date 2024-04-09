@@ -29,7 +29,7 @@ INSTALLED_APPS = [
 PROJECT_APPS = [
     'apps.user',
     'apps.product',
-    'apps.order',
+    'apps.cart',
     'apps.message',
 ]
 
