@@ -2,7 +2,8 @@ import React from "react";
 import Nabvar from "../Components/Nabvar/Nabvar";
 import Footer from "../Components/Footer/Footer";
 import CarruselHome from "../Components/Carrusel/CarruselHome";
-import ProductList from "./ProductList";
+import ProductList from "../Components/Card/ProductList";
+import Pagination from "../Components/Pagination/pagination";
 
 import { Outlet } from "react-router-dom";
 
@@ -15,6 +16,7 @@ const Home = () => {
       <main className="h-screen">
         <CarruselHome />
         <ProductList />
+        <Pagination />     
         <Outlet />
       </main>
 

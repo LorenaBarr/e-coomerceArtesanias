@@ -1,4 +1,5 @@
-import React from "react";
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from "react";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/pagination";
 
@@ -23,7 +24,7 @@ const ProductList = () => {
         price: 49.99,
         imageUrl: "https://www.istockphoto.com/es/foto/clay-vase-gm476809500-66306895",
       },
-      // Agrega más objetos de productos aquí...
+      
     ];
   
     const itemsPerPage = 4;
