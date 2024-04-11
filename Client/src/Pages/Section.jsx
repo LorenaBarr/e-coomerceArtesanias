@@ -6,6 +6,7 @@ import ProductList from "../Components/Card/ProductList";
 const Section = () => {
   return (
     <>
+    
       <CarruselHome />
       <ProductList />
       

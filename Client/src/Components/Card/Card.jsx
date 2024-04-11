@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 
-const Card = ({ product }) => {
+const Card = ({ product, onClick }) => {
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-96 bg-base-100 shadow-xl" onClick={() => onClick(product)}>
       <figure>
         <img src={product.imageUrl} alt={product.name} />
       </figure>
@@ -19,12 +19,13 @@ const Card = ({ product }) => {
   );
 };
 
-export default Card;
-
 Card.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     imageUrl: PropTypes.string.isRequired,
   }).isRequired,
+  onClick: PropTypes.func.isRequired,
 };
+
+export default Card;

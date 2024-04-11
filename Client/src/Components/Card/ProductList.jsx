@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/pagination";
+import ProductModal from "../Card/ProductModal";
 
 
 const ProductList = () => {
@@ -193,40 +194,62 @@ const ProductList = () => {
     ];
   
     const itemsPerRow = 3;
-    const rowsPerPage = 2;
-    const itemsPerPage = itemsPerRow * rowsPerPage;
-    const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = Math.ceil(products.length / itemsPerPage);
-  
-    const handlePageChange = (pageNumber) => {
-      setCurrentPage(pageNumber);
-    };
-  
-    const paginatedProducts = products.slice(
-      (currentPage - 1) * itemsPerPage,
-      currentPage * itemsPerPage
-    );
-  
-    return (
-      <div className="flex flex-wrap justify-center">
-        {/* Renderiza los productos */}
-        {paginatedProducts.map((product) => (
-        <Card key={product.id} product={product} />
-      ))}
-  
-        {/* Rellena las tarjetas faltantes para mantener la estructura */}
-        {Array(itemsPerRow - (paginatedProducts.length % itemsPerRow)).fill(
-          <div className="w-1/3" />
-        )}
-  
-        {/* Renderiza la paginación */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
-      </div>
-    );
+  const rowsPerPage = 2;
+  const itemsPerPage = itemsPerRow * rowsPerPage;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
-  
-  export default ProductList;
+
+  const paginatedProducts = products.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleCardClick = (product) => {
+    setSelectedProduct(product);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedProduct(null);
+  };
+
+  return (
+    <div className="flex flex-wrap justify-center">
+      {/* Renderizar las tarjetas de productos */}
+      {paginatedProducts.map((product) => (
+        <Card key={product.id} product={product} onClick={handleCardClick} />
+      ))}
+
+      {/* Rellenar las tarjetas faltantes para mantener la estructura */}
+      {Array(itemsPerRow - (paginatedProducts.length % itemsPerRow))
+        .fill(null)
+        .map((_, index) => (
+          <div className="w-1/3" key={index}></div>
+        ))}
+
+      {/* Renderizar el modal si showModal es true */}
+      {showModal && (
+        <ProductModal
+          product={selectedProduct}
+          onClose={handleCloseModal}
+        />
+      )}
+
+      {/* Renderizar la paginación */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
+    </div>
+  );
+};
+
+export default ProductList;
