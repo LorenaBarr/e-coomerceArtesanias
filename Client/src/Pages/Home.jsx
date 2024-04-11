@@ -9,18 +9,18 @@ import Pagination from "../Components/Pagination/pagination";
 
 const Home = () => {
   return (
-    <>
+    <div className="container">
       <header>
         <Nabvar />
       </header>
-      <main className="h-screen">
+      <main className="content">
         <Section /> {/* Renderiza el componente Section */}
         <div className="pagination-container">
           <Pagination />
         </div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
