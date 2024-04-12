@@ -21,3 +21,16 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        username = data.get('username')
+        password = data.get('password')
+
+        if not username or not password:
+            raise serializers.ValidationError("Se requieren tanto nombre de usuario como contraseña.")
+
+        # Puedes agregar validaciones adicionales aquí si lo deseas
+        return data

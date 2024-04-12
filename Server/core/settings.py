@@ -148,6 +148,7 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://boomlag.com']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
 if not DEBUG:
     DATABASES = {
         'default': dj_database_url.config(
