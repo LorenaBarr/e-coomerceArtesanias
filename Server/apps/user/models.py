@@ -22,6 +22,7 @@ class UserAccountManager(BaseUserManager):
         return user
 
 class User(AbstractUser, PermissionsMixin):
+    id = models.AutoField(primary_key=True, null=False)
     email = models.EmailField(max_length=255, unique=True)
 
     first_name = models.CharField(max_length=255)
@@ -36,8 +37,6 @@ class User(AbstractUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
-
     
-
     def __str__(self):
         return self.email
