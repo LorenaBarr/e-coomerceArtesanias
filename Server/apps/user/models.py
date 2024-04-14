@@ -23,15 +23,22 @@ class UserAccountManager(BaseUserManager):
 
 class User(AbstractUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
-    user_name = models.CharField(max_length=255, default='sin_nombre')
+    user_name = models.CharField(max_length=255)
+
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['user_name']
+    is_editor = models.BooleanField(default=False)
 
     objects = UserAccountManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
+
+    
 
     def __str__(self):
         return self.email

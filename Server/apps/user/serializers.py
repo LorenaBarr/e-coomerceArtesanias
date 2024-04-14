@@ -10,7 +10,9 @@ def UserSerializer(UserCreateSerializer):
         fields = (
             'id', 
             'email',
-            'userName',  
+            'first_name',
+            'last_name',
             'is_active',
             'is_staff',
+            'is_editor',
         ) 

@@ -43,8 +43,9 @@ PROJECT_APPS = [
 THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken',
     'djoser',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'storages',
 ]
 
@@ -97,6 +98,13 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+]
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -145,6 +153,17 @@ REST_FRAMEWORK = {
     ],
 }
 
+CORS_ORIGIN_WHITEELIST = 'http://localhost:3000','http://boomlag.com'
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://boomlag.com']
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+}
+
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,
@@ -163,12 +182,6 @@ DJOSER = {
 }
 
 AUTH_USER_MODEL = 'user.User'
-
-CORS_ORIGIN_WHITEELIST = 'http://localhost:3000','http://boomlag.com'
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://boomlag.com']
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 
 if not DEBUG:
     DATABASES = {
