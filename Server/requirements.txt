@@ -13,3 +13,4 @@ psycopg2==2.9.9
 uvicorn==0.29.0
 djoser
 djangorestframework_simplejwt
+argon2-cffi
