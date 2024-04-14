@@ -22,16 +22,17 @@ class UserAccountManager(BaseUserManager):
         return user
 
 class User(AbstractUser, PermissionsMixin):
+    id = models.AutoField(primary_key=True, null=False)
     email = models.EmailField(max_length=255, unique=True)
-    user_name = models.CharField(max_length=255, default='sin_nombre')
+    user_name = models.CharField(max_length=255, default='')
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    objects = UserAccountManager()
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['user_name']
-
-    objects = UserAccountManager()
 
     def __str__(self):
         return self.email
