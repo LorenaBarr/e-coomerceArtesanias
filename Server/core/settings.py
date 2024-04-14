@@ -43,6 +43,8 @@ PROJECT_APPS = [
 THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
     'storages',
 ]
 
@@ -139,9 +141,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
+
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'SET_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'LOGOUT_ON_PASSWORD_CHANGE': True,
+    'SERIALIZERS': {
+        'user_create': 'apps.user.serializers.UserSerializer',
+        'user': 'apps.user.serializers.UserSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+        'current_user': 'apps.user.serializers.UserSerializer',
+    },
+}
+
+AUTH_USER_MODEL = 'user.User'
 
 CORS_ORIGIN_WHITEELIST = 'http://localhost:3000','http://boomlag.com'
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://boomlag.com']
