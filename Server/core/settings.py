@@ -60,7 +60,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -153,8 +152,8 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ORIGIN_WHITEELIST = 'http://localhost:3000','http://boomlag.com'
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://boomlag.com']
+CORS_ORIGIN_WHITEELIST = True
+CSRF_TRUSTED_ORIGINS = []
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -167,6 +166,10 @@ SIMPLE_JWT = {
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': True,
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
@@ -176,8 +179,8 @@ DJOSER = {
     'SERIALIZERS': {
         'user_create': 'apps.user.serializers.UserSerializer',
         'user': 'apps.user.serializers.UserSerializer',
-        'user_delete': 'djoser.serializers.UserDeleteSerializer',
         'current_user': 'apps.user.serializers.UserSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
 }
 
