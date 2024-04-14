@@ -4,15 +4,15 @@ from django.contrib.auth import get_user_model
 
 user = get_user_model()
 
-def UserSerializer(UserCreateSerializer):
+class UserSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
-        model = user  
+        model = user
         fields = (
             'id', 
-            'email',
-            'first_name',
+            'email', 
+            'first_name', 
             'last_name',
             'is_active',
             'is_staff',
-            'is_editor',
-        ) 
+            'is_editor', 
+            )
