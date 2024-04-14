@@ -1,6 +1,3 @@
-asgiref==3.8.1
-click==8.1.7
-colorama==0.4.6
 dj-database-url==2.1.0
 Django==4.2.11
 django-cors-headers==4.3.1
@@ -13,7 +10,7 @@ packaging==24.0
 pillow==10.3.0
 psycopg-binary==3.1.18
 psycopg2==2.9.9
-sqlparse==0.4.4
-typing_extensions==4.11.0
-tzdata==2024.1
 uvicorn==0.29.0
+djoser
+djangorestframework_simplejwt
+argon2-cffi
