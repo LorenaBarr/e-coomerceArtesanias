@@ -45,7 +45,6 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-    'storages',
 ]
 
 # para no confundirme aquiva a estar toda las aplicaciones que vamos a utilizar

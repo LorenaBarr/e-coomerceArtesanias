@@ -24,7 +24,7 @@ class UserAccountManager(BaseUserManager):
 class User(AbstractUser, PermissionsMixin):
     id = models.AutoField(primary_key=True, null=False)
     email = models.EmailField(max_length=255, unique=True)
-    user_name = models.CharField(max_length=255, default='')
+    user_name = models.CharField(max_length=255, null=False, default='')
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
