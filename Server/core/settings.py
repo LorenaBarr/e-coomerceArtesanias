@@ -152,9 +152,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ORIGIN_WHITEELIST = True
-CSRF_TRUSTED_ORIGINS = []
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SIMPLE_JWT = {
@@ -185,7 +182,12 @@ DJOSER = {
     },
 }
 
+
 AUTH_USER_MODEL = 'user.User'
+
+
+CORS_ORIGIN_WHITEELIST = ['*']
+# CSRF_TRUSTED_ORIGINS = []
 
 if not DEBUG:
     DATABASES = {
