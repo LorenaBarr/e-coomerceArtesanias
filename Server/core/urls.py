@@ -5,8 +5,7 @@ from django.conf import settings
 
 urlpatterns = [ 
     path('auth/', include('djoser.urls')),  # Rutas de autenticación básicas
-    path('auth/jwt/', include('djoser.urls.jwt')),  # Rutas de JWT
-    path('auth/social/', include('djoser.social.urls')),  # Rutas de autenticación social
+    path('auth', include('djoser.urls.jwt')),  # Rutas de JWT 
     
     path('api/product/', include('apps.product.urls')),
     path('api/cart/', include('apps.cart.urls')),
