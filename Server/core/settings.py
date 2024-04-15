@@ -152,8 +152,8 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ORIGIN_WHITEELIST = True
-CSRF_TRUSTED_ORIGINS = []
+CORS_ORIGIN_WHITEELIST =['*']
+# CSRF_TRUSTED_ORIGINS = []
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
