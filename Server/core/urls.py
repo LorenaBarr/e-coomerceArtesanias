@@ -4,9 +4,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [ 
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
-    path('auth/', include('djoser.social.urls')),
+    path('auth/', include('djoser.urls')),  # Rutas de autenticación básicas
+    path('auth', include('djoser.urls.jwt')),  # Rutas de JWT 
     
     path('api/product/', include('apps.product.urls')),
     path('api/cart/', include('apps.cart.urls')),
