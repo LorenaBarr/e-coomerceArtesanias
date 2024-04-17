@@ -152,13 +152,3 @@ CORS_ALLOWED_ORIGINS=[
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-if not DEBUG:
-    DATABASES = {
-        'default': dj_database_url.config(
-            # Replace this value with your local database's connection string.
-            default='postgres://admin:p7iuYZ4ItvxjymS5q2tspLiZGECeyrLz@dpg-cofks4v79t8c73c5kt9g-a.oregon-postgres.render.com/artesania',
-            
-            conn_max_age=600
-        )
-    }
