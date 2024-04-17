@@ -1,4 +1,9 @@
 # user
+
+## aun me falta dar permisos, pero por ahora pueden ingresar a esas rutas sin restriccion 
+
+
+
 ## register: peticion POST: aqui es donde de se va a registrar el usuario
 https://c17-64-n-python-1.onrender.com/api/user/register/
 
@@ -59,6 +64,9 @@ https://c17-64-n-python-1.onrender.com/api/user/logout/
 ya con esa ruta eliminamos lo que cerramos sesion
 
 # products
+
+## ojoooo gran ojoooo
+esta configuracion aun no incluye para insertar imagenes por ende en caso de productos solo se ponen los atributos y la imagen lo voy a configurar a medida que va pasando entre estos dias 
 
 ## peticion POST: para crear una categoria
 https://c17-64-n-python-1.onrender.com/api/product/create-category/
@@ -177,11 +185,17 @@ https://c17-64-n-python-1.onrender.com/api/product/delete-product/<id del produc
 
 
 # message
+## quise hacerlo con tomando los datos del users pero por ahora esta asi y funcion
 
 ## peticion POST: es donde se deja un comentario de su opinion o alguna recomendacion para el dueño
 https://c17-64-n-python-1.onrender.com/api/message/create
+el modelo que para poner un mesage es la siguiente 
 ```javascript
-
+{
+    "email": "ejemplo@correo.com",
+    "phone": "123456789",
+    "message": "Hola, este es un mensaje de prueba."
+}
 ```
 
 
