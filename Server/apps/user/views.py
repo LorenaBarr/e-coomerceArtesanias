@@ -7,17 +7,15 @@ from rest_framework.exceptions import AuthenticationFailed
 import datetime
 import jwt
 
-
 class RegisterView(APIView):
     
     def post(self,request):
         serializer = UserSerializer(data=request.data)
-        
+        print("Intentando registrar usuario")
         if serializer.is_valid():
-            serializer.save()
-            # Create user
-            user = User.objects.latest('UserId')
-            user.save()
+            print("Serializer valido")
+            user = serializer.save()
+            
             return Response({'status': 'Success'})
         else:
             return Response({'status': 'Error'})
@@ -39,7 +37,7 @@ class LoginView(APIView):
             AuthenticationFailed('Incorrect password!')
         
         payload = {
-            'id':user.UserId,
+            'id':user.id,
             'exp':datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
             'iat':datetime.datetime.utcnow()
         }
@@ -48,7 +46,7 @@ class LoginView(APIView):
         response.data = {
             'message':'success',
             'user':user.Name,
-            'user_id':user.UserId,
+            'user_id':user.id,
             'token':token
         }
         response.set_cookie(key='jwt',value=token,httponly=True)
@@ -57,15 +55,15 @@ class LoginView(APIView):
 class LoginWithToken(APIView):
     def get(self, request):
         try:
+    
             token = request.headers['Authorization'].split(' ')[1]
-            print(token)
+                                                                
             if not token:
                 raise AuthenticationFailed('Unauthenticated!')
-
-            payload = jwt.decode(token, 'secret', algorithm='HS256')
-            print(payload)
-            user = User.objects.filter(UserId=payload.get('id')).first()
-            print(user," ",payload)
+            
+            payload = jwt.decode(jwt=token,key='secret', algorithms=['HS256'])
+            user = User.objects.filter(id=payload['id']).first()
+            
             if not user:
                 raise AuthenticationFailed('User not found!')
 
@@ -90,3 +88,6 @@ class LogoutView(APIView):
             'message':'success'
         }
         return response
+    
+    
+    # HECHO POR JUAN CARLOS

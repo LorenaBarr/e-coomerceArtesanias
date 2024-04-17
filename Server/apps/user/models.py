@@ -7,7 +7,7 @@ class User(models.Model):
     Password = models.CharField(max_length=255, default='')
     is_editor = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'Email'
     REQUIRED_FIELDS = ['Email', 'Password']
 
     def to_dict(self):
