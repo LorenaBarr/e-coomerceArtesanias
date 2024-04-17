@@ -1,8 +1,6 @@
-from django.urls import path, include
-from rest_framework import routers
-from . import views
+from django.urls import path
 from .views import RegisterView, LoginView, LogoutView, LoginWithToken
-from django.views.generic import RedirectView
+from rest_framework import routers
 
 router = routers.DefaultRouter()
 
