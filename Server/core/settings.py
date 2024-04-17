@@ -39,9 +39,6 @@ PROJECT_APPS = [
 THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
-    'djoser',
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
 ]
 
 # para no confundirme aquiva a estar toda las aplicaciones que vamos a utilizar
@@ -93,13 +90,6 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-]
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -119,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us' #lenguaje en ingles 
+LANGUAGE_CODE = 'es' #lenguaje en ingles 
 TIME_ZONE = 'America/Lima'
 USE_I18N = True
 USE_I10N = True
@@ -148,36 +138,18 @@ REST_FRAMEWORK = {
     ],
 }
 
+CORS_ALLOWED_ORIGINS=[
+    "http://example.com",
+    "http://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+    "http://127.0.0.1:8000",
+    "http://localhost:5173",
+    "http://localhost:5173",
+]
 
-CORS_ALLOW_ALL_ORIGINS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'AUTH_TOKEN_CLASSES': (
-        'rest_framework_simplejwt.tokens.AccessToken',
-        )
-}
-
-DJOSER = {
-    'LOGIN_FIELD': 'email',
-    'SERIALIZERS': {
-        'current_user': 'apps.user.serializers.UserSerializer',
-        'user': 'apps.user.serializers.UserSerializer',
-        'user_create': 'apps.user.serializers.UserCreateSerializer',
-        'user_delete': 'djoser.serializers.UserDeleteSerializer'
-    }
-}
-
-
-AUTH_USER_MODEL = 'user.User'
-
-
-CORS_ORIGIN_WHITEELIST = ['*']
-# CSRF_TRUSTED_ORIGINS = []
 
 if not DEBUG:
     DATABASES = {
