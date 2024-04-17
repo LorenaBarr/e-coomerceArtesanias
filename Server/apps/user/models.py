@@ -5,6 +5,7 @@ class User(models.Model):
     LastName = models.CharField(max_length=50, default='')
     Email = models.CharField(max_length=50, default='')
     Password = models.CharField(max_length=255, default='')
+    is_editor = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['Email', 'Password']
