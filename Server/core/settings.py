@@ -3,6 +3,9 @@ import os
 import environ
 import dj_database_url
 
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+
 env = environ.Env()
 environ.Env.read_env()
 
