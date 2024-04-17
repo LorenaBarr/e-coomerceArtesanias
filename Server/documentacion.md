@@ -61,7 +61,7 @@ ya con esa ruta eliminamos lo que cerramos sesion
 # products
 
 ## peticion POST: para crear una categoria
-http://127.0.0.1:8000/api/product/create-category/
+https://c17-64-n-python-1.onrender.com/api/product/create-category/
 
 para crear el producto debes hacer lo soguiente
 
@@ -74,7 +74,7 @@ para crear el producto debes hacer lo soguiente
 
 
 ## peticion POST: para crear un un producto
-http://127.0.0.1:8000/api/product/create-product/
+https://c17-64-n-python-1.onrender.com/api/product/create-product/
 
 aqui es ya donde se crear lo que es un producto pero por ahora entre los atributos aun no hay lo que es la imagen recien modificare para que se pueda cargar imagenes
 
@@ -89,7 +89,7 @@ aqui es ya donde se crear lo que es un producto pero por ahora entre los atribut
 
 ## peticion GET: para mostrar todas las categorias que tenemos 
 
-http://127.0.0.1:8000/api/product/list-all-categories/
+https://c17-64-n-python-1.onrender.com/api/product/list-all-categories/
 
 como resultado te da eso
 ```javascript
@@ -121,7 +121,7 @@ como resultado te da eso
 
 
 ## peticion GET: para mostrar todo los productos pertenecientes a una categoria
-http://127.0.0.1:8000/api/product/category/<la categoria>/
+https://c17-64-n-python-1.onrender.com/api/product/category/<la categoria>/
 
 te muestra de esa manera:
 ```javascript
@@ -140,7 +140,7 @@ te muestra de esa manera:
 
 
 ## peticion GET: para mostrar todo los productos 
-http://127.0.0.1:8000/api/product/list-all-products/
+https://c17-64-n-python-1.onrender.com/api/product/list-all-products/
 
 y el resulatado debe ser de la siguiente manera:
 
@@ -160,7 +160,7 @@ y el resulatado debe ser de la siguiente manera:
 
 
 ## peticion DELETE: para eliminar una categoria
-http://127.0.0.1:8000/api/product/delete-category/<id de categoria>/
+https://c17-64-n-python-1.onrender.com/api/product/delete-category/<id de categoria>/
 
 si te sale esto eso quiere decir que si se elimino
 
@@ -172,14 +172,14 @@ si te sale esto eso quiere decir que si se elimino
 
 
 ## peticion DELETE: para eliminar un producto
-http://127.0.0.1:8000/api/product/delete-product/<id del producto>/
+https://c17-64-n-python-1.onrender.com/api/product/delete-product/<id del producto>/
 
 
 
 # message
 
 ## peticion POST: es donde se deja un comentario de su opinion o alguna recomendacion para el dueño
-http://127.0.0.1:8000/api/message/create
+https://c17-64-n-python-1.onrender.com/api/message/create
 ```javascript
 
 ```
