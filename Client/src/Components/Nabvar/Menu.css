@@ -1,0 +1,21 @@
+.menu {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 0; /* Elimina el margen */
+    padding: 0; /* Elimina el padding */
+    list-style-type: none; /* Elimina los estilos de lista */
+  }
+  
+  .menu li {
+    margin-right: 20px; /* Espaciado entre elementos del menú */
+  }
+  
+  .menu li:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último elemento */
+  }
+  
+  /* Aplica la anchura completa solo cuando es horizontal */
+  .menu-horizontal {
+    width: 100%;
+  }
