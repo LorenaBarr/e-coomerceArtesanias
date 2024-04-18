@@ -4,6 +4,7 @@ from rest_framework import status
 from .models import Category, Product
 from .serializers import ProductSerializer, CategorySerializer
 
+#mostrar productos por categoria
 class GetProductsByCategory(APIView):
     def get(self, request, category_name):
         try:
@@ -15,6 +16,22 @@ class GetProductsByCategory(APIView):
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
 
+#listar todos los productos
+class ListAllProducts(APIView):
+    def get(self, request):
+        products = Product.objects.all().order_by('name')
+        serializer = ProductSerializer(products, many=True)
+        return Response(serializer.data)
+    
+# listar todas las categorias
+class ListAllCategories(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        data = [{"id": category.id, "name": category.name} for category in categories]
+        return Response(data)
+
+
+#crear producto
 class CreateProduct(APIView):
     def post(self, request):
         serializer = ProductSerializer(data=request.data)
@@ -23,12 +40,7 @@ class CreateProduct(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ListAllProducts(APIView):
-    def get(self, request):
-        products = Product.objects.all().order_by('name')
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
-
+# crear una categoria
 class CreateCategory(APIView):
     def post(self, request):
         name = request.data.get('name')
@@ -40,13 +52,8 @@ class CreateCategory(APIView):
             return Response({"detail": f"Category '{name}' created successfully."}, status=status.HTTP_201_CREATED)
         else:
             return Response({"detail": f"Category '{name}' already exists."}, status=status.HTTP_400_BAD_REQUEST)
-        
-class ListAllCategories(APIView):
-    def get(self, request):
-        categories = Category.objects.all()
-        data = [{"id": category.id, "name": category.name} for category in categories]
-        return Response(data)
 
+# borrar un producto
 class DeleteProduct(APIView):
     def delete(self, request, product_id):
         try:
@@ -55,7 +62,7 @@ class DeleteProduct(APIView):
             return Response({"detail": "Product deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
         except Product.DoesNotExist:
             return Response({"detail": "Product not found."}, status=status.HTTP_404_NOT_FOUND)
-
+# borrar una categoria
 class DeleteCategory(APIView):
     def delete(self, request, category_id):
         try:
@@ -64,3 +71,12 @@ class DeleteCategory(APIView):
             return Response({"detail": "Category deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
         except Category.DoesNotExist:
             return Response({"detail": "Category not found."}, status=status.HTTP_404_NOT_FOUND)
+
+class GetProductByName(APIView):
+    def get(self, request, product_name):
+        try:
+            products = Product.objects.filter(name__icontains=product_name)
+            serializer = ProductSerializer(products, many=True)
+            return Response(serializer.data)
+        except:
+            return Response({"detail": "An error occurred while searching for products."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

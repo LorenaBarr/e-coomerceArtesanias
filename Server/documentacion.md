@@ -183,11 +183,21 @@ http://127.0.0.1:8000/api/message/create
 ```javascript
 
 ```
+## peticion POST: es donde se deja un comentario de su opinion o alguna recomendacion para el dueño
 
+http://127.0.0.1:8000/api/message/
 
+```javascript
+
+```
 
 # carshoping
 
 ```javascript
 
 ```
+
+comentario en facebook 
+grabar video para hacer 
+mencion en facebook
+me testimonio en word, ppt, pdf
