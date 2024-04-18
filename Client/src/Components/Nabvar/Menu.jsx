@@ -4,7 +4,7 @@ import "./Menu.css";
 
 const Menu = () => {
   return (
-    <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box flex justify-center">
+    <ul className="menu menu-horizontal flex items-center justify-center space-x-4 bg-base-200 rounded-box">
       <li>
         <Link to="/">Inicio</Link>
       </li>
