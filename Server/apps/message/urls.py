@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import create_message
+from .views import CreateMessage
 
 urlpatterns = [
-    path('create/', create_message, name='create_message'),
+    path('create/', CreateMessage.as_view(), name='create_message'),
 ]
