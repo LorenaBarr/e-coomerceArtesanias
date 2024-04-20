@@ -1,22 +1,25 @@
-from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Cart
+from .serializers import CartSerializer
 
-# Create your views here.
-# def mostrar_carrito(request):
-#     # Lógica para obtener y mostrar el contenido del carrito
-#     return render(request, 'carrito.html', {'contenido_carrito': contenido_carrito})
+class CartView(APIView):
+    def get(self, request):
+        pass
 
-# def agregar_al_carrito(request, producto_id):
-#     # Lógica para agregar el producto al carrito
-#     return render('mostrar_carrito')
+class AddToCart(APIView):
+    def post(self, request):
+        pass
 
-# def actualizar_carrito(request, producto_id):
-#     # Lógica para actualizar la cantidad de un producto en el carrito
-#     return render('mostrar_carrito')
+class RemoveFromCart(APIView):
+    def post(self, request):
+        pass
 
-# def eliminar_del_carrito(request, producto_id):
-#     # Lógica para eliminar un producto del carrito
-#     return render('mostrar_carrito')
+class UpdateCart(APIView):
+    def post(self, request):
+        pass
 
-# def procesar_pago(request):
-#     # Lógica para procesar el pago y finalizar la compra
-#     return render('pagina_confirmacion_pago')
+class ProcessPayment(APIView):
+    def post(self, request):
+        pass
