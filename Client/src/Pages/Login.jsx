@@ -19,14 +19,17 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await apiClient.login(formLog);
-      console.log(response?.data);
+      if (response?.data?.token) {
+        localStorage.setItem("token", response.data.token);
+      }
       Swal.fire({
         title: "¡Éxito!",
         text: response.data.msg,
         icon: "success",
         confirmButtonText: "Aceptar",
       });
-
+      const user = await apiClient.log();
+      console.log(user);
       return;
     } catch (error) {
       Swal.fire({
