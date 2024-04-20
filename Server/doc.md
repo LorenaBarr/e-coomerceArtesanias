@@ -64,7 +64,7 @@ ya con esa ruta eliminamos lo que cerramos sesion
 
 ## listar_productos: peticion GET: con esta peticion se lista todo los productos que tenemos en la base de datos junto a todas sus categorias
 
-URL
+https://c17-64-n-python-1.onrender.com/api/product/list_products/
 
 la peticion get te mostrara de esta manera los producto que se encuentran en la base de datos, todo los productos que deseas
 
@@ -131,7 +131,7 @@ la peticion get te mostrara de esta manera los producto que se encuentran en la 
 
 ## listar_categorias: peticion GET : con  esta peticion se lista todo las categorias que tenemos en la  base de datos
 
-URL
+https://c17-64-n-python-1.onrender.com/api/product/list_categories/
 
 al hacer esta peticion se te entregara los datos de la siguiente manera:
 
@@ -162,12 +162,12 @@ al hacer esta peticion se te entregara los datos de la siguiente manera:
 
 ## mostrar_categoria : peticion GET: aqui es donde se muestra todo los productos por categoria. ejem si la peticion es productos de la categoria ceramica se mostraran todo los productos pertenecientes a la categoria de ceramica
 
-URL
+https://c17-64-n-python-1.onrender.com/api/product/category/<str:category_name>/
 
 en este caso practico voy a tomar un ejemplo para mostrar todo los productos de la categoria joyas  
 
 ```javascript
-aqui la url de ejemplo
+https://c17-64-n-python-1.onrender.com/api/product/category/joyas/
 ```
 que al hacer esa peticion se mostrar de la siguiente manera:
 
@@ -192,11 +192,11 @@ que al hacer esa peticion se mostrar de la siguiente manera:
 
 ## buscar_nombre: peticion GET: aqui por esta ruta es donde se muestra el producto que estas buscando. por ejemplo si estas buscando chengo chengo el cual es un juguete que esta guardado en la base de datos, entonces si buscar por su nombre te devolvera el producto en si.
 
-URL
+https://c17-64-n-python-1.onrender.com/api/product/product-fill/<str:product_name>/
 en caso de que quieras buscar un producto especifico lo puedes de hacer de la siguiente manera:
 
 ```javascript
-aqui ira el ejemplo para mostrar de como debe ir la url
+https://c17-64-n-python-1.onrender.com/api/product/product-fill/Sombrero/
 ```
 
 ```javascript
@@ -213,7 +213,7 @@ aqui ira el ejemplo para mostrar de como debe ir la url
 
 ## crear producto: peticion POST: aqui es donde se crea un producto.
 
-URL
+https://c17-64-n-python-1.onrender.com/api/product/create-product/
 
 para la creacion de producto el formato para crear en json es la siguiente:
 
@@ -238,7 +238,8 @@ pero como respuesta a lo que creaste te responde con lo siguiente:
 ```
 ## crear categoria: peticion POST: aqui es donde se crea una nueva categoria.
 
-URL
+https://c17-64-n-python-1.onrender.com/api/product/create-category/
+
 para crear la categoria debes seguir la siguiente estructura que esta en formato json
 ```javascript
 {
@@ -257,11 +258,12 @@ pero como respuesta se espera lo siguiente:
 
 ## borrar un producto: peticion DELETE: se borra el producto que usted desea.
 
-URL
+https://c17-64-n-python-1.onrender.com/api/product/delete-product/<int:product_id>/
+
 para eliminar un producto se hace mediante su id y para tomarlo de ejemplo en la url deberia ir de la siguiente manre:
 
 ```javascript
-url cmon el id de la categoria que quiere eliminar
+https://c17-64-n-python-1.onrender.com/api/product/delete-product/3/
 ```
 cuando se elimine de manerca satisfactoria te da como resultado el siguiente:
 
@@ -273,10 +275,11 @@ cuando se elimine de manerca satisfactoria te da como resultado el siguiente:
 
 ## borrar categoria: peticion DELETE: se borra la categoria que usted quiere 
 
-URL
+https://c17-64-n-python-1.onrender.com/api/product/delete-category/<int:category_id>/
+
 al igual que para eliminar productos en categorias tambien se elimina por el id de la categoria
 ```javascript
-url con el id de la categoria que quiere eliminar
+https://c17-64-n-python-1.onrender.com/api/product/delete-category/2/
 ```
 si se elimina de manera satisfactoria se mostrara lo siguiente:
 
@@ -290,7 +293,7 @@ si se elimina de manera satisfactoria se mostrara lo siguiente:
 
 ## crear mensaje: peticion POST: para crear un mesaje.
 
-URL
+https://c17-64-n-python-1.onrender.com/pi/message/create/
 
 ```javascript
 {
@@ -314,7 +317,7 @@ URL
 
 ## mostrar mensaje: peticion GET: para mostrar los comentarios que estan.
 
-URL
+https://c17-64-n-python-1.onrender.compi/message/list_all/
 
 ```javascript
 [
