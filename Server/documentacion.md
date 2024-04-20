@@ -71,7 +71,7 @@ esta configuracion aun no incluye para insertar imagenes por ende en caso de pro
 ## peticion POST: para crear una categoria
 https://c17-64-n-python-1.onrender.com/api/product/create-category/
 
-para crear el producto debes hacer lo soguiente
+para crear la categoria debes hacer lo soguiente
 
 ```javascript
 {
@@ -197,11 +197,21 @@ el modelo que para poner un mesage es la siguiente
     "message": "Hola, este es un mensaje de prueba."
 }
 ```
+## peticion POST: es donde se deja un comentario de su opinion o alguna recomendacion para el dueño
 
+http://127.0.0.1:8000/api/message/
 
+```javascript
+
+```
 
 # carshoping
 
 ```javascript
 
 ```
+
+comentario en facebook 
+grabar video para hacer 
+mencion en facebook
+me testimonio en word, ppt, pdf
