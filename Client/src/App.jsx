@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import UserContext from "./context/UserContext";
 import Home from "./Pages/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-//Páginas
-// import Error404 from "./Pages/Error404";
-
-import Section from "./Pages/Section"; 
+// Páginas
+import Error404 from "./Pages/Error404";
+import Section from "./Pages/Section";
+import Login from "./Pages/Login";
 
 //aquí declaramos las rutas e importamos las páginas ahi deje unos ejemplos con el error 404 pero deberiamos agregar el componente qye corresponda cuando le den a la url que queremos.
 const router = createBrowserRouter([
@@ -26,15 +27,34 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/login",
+    element: <Login />,
+  },
+  {
     path: "*",
-    element: <Section />,
+    element: <Error404 />,
   },
 ]);
 
 const App = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+    if (savedUser) {
+      setUser(savedUser);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
   return (
     <>
-      <RouterProvider router={router} />
+      <UserContext.Provider value={{ user, setUser }}>
+        <RouterProvider router={router} />
+      </UserContext.Provider>
     </>
   );
 };

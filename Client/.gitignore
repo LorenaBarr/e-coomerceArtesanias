@@ -1,3 +1,6 @@
+#las vaariables de entorno no van a github
+.env
+
 # Logs
 logs
 *.log

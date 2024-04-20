@@ -22,7 +22,15 @@ export class ApiClient {
   }
 
   //si quisieras hacer otra petición cualquiera la harias asi, solo cambia el verbo http y el endpoint que nos brinde el backend
-  async editUSer() {
-    return this.client.patch(`/edit-user`);
+  async login(formLog) {
+    return this.client.post(`/api/user/login/`, formLog);
+  }
+
+  async login(token) {
+    return this.client.post(`/api/user/login/`, formLog);
+  }
+
+  async register(formLog) {
+    return this.client.post(`/api/user/register/`, formLog);
   }
 }
