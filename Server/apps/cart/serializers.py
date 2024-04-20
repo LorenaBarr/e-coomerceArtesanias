@@ -8,7 +8,7 @@ class CartSerializer(serializers.ModelSerializer):
                   'users',
                   'products',
                   'order_date',
-                  'state',
+                  'quantity',
         )
 
     
