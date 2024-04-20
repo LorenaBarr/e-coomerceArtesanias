@@ -80,3 +80,4 @@ class GetProductByName(APIView):
             return Response(serializer.data)
         except:
             return Response({"detail": "An error occurred while searching for products."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+

@@ -4,7 +4,7 @@ from .views import GetProductByName
 
 urlpatterns = [
     path('category/<str:category_name>/', views.GetProductsByCategory.as_view(), name='buscar por categoria'),
-    path('product-fill//<str:product_name>/', GetProductByName.as_view(), name='buscar por nombre'),
+    path('product-fill/<str:product_name>/', GetProductByName.as_view(), name='buscar por nombre'),
     path('create-product/', views.CreateProduct.as_view(), name='crear producto'),
     path('list-all-products/', views.ListAllProducts.as_view(), name='listar todos los productos'),
     path('create-category/', views.CreateCategory.as_view(), name='crear categoria'),

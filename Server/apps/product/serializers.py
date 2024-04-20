@@ -7,7 +7,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
-            'description',
+            'URL',
             'price',
             'category'
         )
@@ -21,5 +21,4 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
-            'description',
         )

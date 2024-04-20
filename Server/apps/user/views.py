@@ -90,4 +90,3 @@ class LogoutView(APIView):
         return response
     
     
-    # HECHO POR JUAN CARLOS
