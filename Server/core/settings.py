@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgres://admin:uFN1tNyRns5wkl48wNaWdzCHKD7PXGQg@dpg-cohnfidjm4es739bsme0-a.oregon-postgres.render.com/rene',
+        default='postgres://admin:vR5sHHcTUwtteFd2kBLnOtSkobRbx9AN@dpg-cohntlol5elc73cr4vu0-a.oregon-postgres.render.com/artesania_5lyz',
         conn_max_age=600
     )
 }
