@@ -63,7 +63,7 @@ ya con esa ruta eliminamos lo que cerramos sesion
 ## peticion POST: para crear una categoria
 http://127.0.0.1:8000/api/product/create-category/
 
-para crear el producto debes hacer lo soguiente
+para crear la categoria debes hacer lo soguiente
 
 ```javascript
 {

@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Category, Product
-from .serializers import ProductSerializer
+from .serializers import ProductSerializer, CategorySerializer
 
 #listar todos los productos
 class ListAllProducts(APIView):
@@ -53,15 +53,12 @@ class CreateProduct(APIView):
 # crear una categoria
 class CreateCategory(APIView):
     def post(self, request):
-        name = request.data.get('name')
-        if not name:
-            return Response({"detail": "Category name is required."}, status=status.HTTP_400_BAD_REQUEST)
-
-        category, created = Category.objects.get_or_create(name=name)
-        if created:
-            return Response({"detail": f"Category '{name}' created successfully."}, status=status.HTTP_201_CREATED)
+        serializer = CategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response({"detail": f"Category '{name}' already exists."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
 
 # borrar un producto
