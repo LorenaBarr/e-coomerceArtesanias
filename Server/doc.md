@@ -333,3 +333,61 @@ https://c17-64-n-python-1.onrender.compi/message/list_all/
 
 # carrito de compra
 
+## mostrar productos que estan en el carrito: peticion GET: aqui se va a mostrar todos los productos que uno tiene en el carrito, siempre y cuando este logueado:
+
+url
+
+como salida quedaria de la siguiente manera:
+
+```javascript
+{
+    "cart_items": [
+        {
+            "id_cart": 4,
+            "id": 1,
+            "name": "chengo chengo",
+            "URL": "https://pixabay.com/es/photos/cer%C3%A1mica-arcilla-artesan%C3%ADa-8026823/",
+            "price": 450.0,
+            "category": {
+                "id": 1,
+                "name": "juguete"
+            },
+            "quantity": 3
+        },
+        {
+            "id_cart": 5,
+            "id": 2,
+            "name": "arete",
+            "URL": "https://pixabay.com/es/photos/cer%C3%A1mica-arcilla-artesan%C3%ADa-8026823/",
+            "price": 45.0,
+            "category": {
+                "id": 2,
+                "name": "joyas"
+            },
+            "quantity": 2
+        }
+    ]
+}
+```
+
+## añadir producto a carrito: PETICION POST: aqui es donde se añaden productos al carrito:
+
+URL
+
+para añadir el producto al carrito se debe enviar lo que es el id_del producto,y la cantidad de la siguiente manera:
+```javascript
+{
+    "id": 1,
+    "quantity": 2
+}
+```
+
+## eliminar producto del carrito: PETICION POST: aqui se elimina el producto que quieren del carrito
+url
+
+se envia el id del producto que quiere quitar del carrito
+```javascript
+{
+    "id": 1
+}
+```
