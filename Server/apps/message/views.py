@@ -6,6 +6,8 @@ from .serializers import MessageSerializer
 
 class CreateMessage(APIView):
     def post(self, request, format=None):
+        if not request.user.is_authenticated:
+            return Response({'message': 'You must be logged in to add items to the cart'})
         serializer = MessageSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -15,6 +17,8 @@ class CreateMessage(APIView):
 
 class ViewMessages(APIView):
     def get(self, request):
+        if not request.user.is_authenticated:
+            return Response({'message': 'You must be logged in to add items to the cart'})
         messages = Message.objects.all()
         serializer = MessageSerializer(messages, many=True)
         return Response(serializer.data)
