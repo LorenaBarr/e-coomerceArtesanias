@@ -3,10 +3,9 @@ from apps.product.models import Product
 from apps.user.models import User
 
 class Cart(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    products = models.ManyToManyField(Product)
-    order_date = models.DateTimeField(Product,auto_now_add=True)
-    quantity = models.IntegerField(default=0)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default= 0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  
 
     def __str__(self):
-        return str(self.orderID)
+        return f"{self.quantity} x {self.product.name}"
