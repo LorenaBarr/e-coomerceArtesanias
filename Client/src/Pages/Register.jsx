@@ -57,16 +57,19 @@ const Register = () => {
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content flex-col lg:flex-row">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
+            <h1 className="text-5xl font-bold">Artesanias Express</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+            Nuestra pasión por las artesanías únicas y hechas a mano nos impulsa.
             </p>
+            <img
+            src="https://previews.123rf.com/images/madrabothair/madrabothair1602/madrabothair160200228/53690772-collage-de-diferentes-artesan%C3%ADas-de-los-mercados-de-marruecos.jpg"
+            alt="Artesanías"
+            className="w-full h-auto lg:max-w-md"
+            />
           </div>
-          <div className="py-10 card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="py-10 card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 lg:w-1/">
             <form
               className="flex flex-col justify-between items-center gap-3"
               onSubmit={handleSubmit}

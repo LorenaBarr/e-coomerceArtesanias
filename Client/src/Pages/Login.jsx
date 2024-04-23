@@ -66,24 +66,28 @@ const Login = () => {
 
   return (
     <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
+      <div className="hero-content flex-col lg:flex-row ">
+        <div className="text-center lg:text-left lg:w-1/2">
+          <h1 className="text-5xl font-bold">Artesania Express</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+          “Descubre la belleza de lo hecho a mano, donde cada detalle cuenta.”
           </p>
+          <img
+            src="https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg"
+            alt="Artesanías"
+            className="w-full h-auto lg:max-w-md rounded-lg"
+            />
         </div>
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 lg:w-1/2">
           <form className="card-body" onSubmit={handleSubmit}>
             <div className="form-control">
+            <h1 className="text-3xl font-bold">Iniciar Sesion</h1>
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Correo</span>
               </label>
               <input
                 type="email"
-                placeholder="email"
+                placeholder="Ingresa tu email"
                 name="Email"
                 className="input input-bordered"
                 onChange={handleChangeLog}
@@ -92,7 +96,7 @@ const Login = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text">Contraseña</span>
               </label>
 
               <div className="mx-0 px-0  w-full max-w-xs relative">
@@ -118,7 +122,7 @@ const Login = () => {
               </div>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
+                  ¿Olvidaste tu contraseña?
                 </a>
               </label>
             </div>
