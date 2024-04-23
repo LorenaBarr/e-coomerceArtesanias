@@ -10,6 +10,7 @@ import Login from "./Pages/Login";
 import Contact from "./Pages/Contact";
 import AboutUs from "./Pages/AboutUs";
 import Products from "./Pages/Products";
+import Carrito from "./Pages/Carrito";
 
 //aquí declaramos las rutas e importamos las páginas ahi deje unos ejemplos con el error 404 pero deberiamos agregar el componente qye corresponda cuando le den a la url que queremos.
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products />,
+      },
+      {
+        path: "/carrito",
+        element: <Carrito />,
       },
     ],
   },
