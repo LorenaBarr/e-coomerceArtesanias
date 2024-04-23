@@ -1,18 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ApiClient } from "../api/services";
 import Swal from "sweetalert2";
 import UserContext from "../context/UserContext";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);
   const apiClient = new ApiClient();
-
+  const [pass, setPass] = useState("password");
   const [loading, setLoading] = useState(false);
   const [formLog, setFormLog] = useState({
     Email: "",
     Password: "",
   });
-
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -22,16 +24,20 @@ const Login = () => {
       if (response?.data?.token) {
         localStorage.setItem("token", response.data.token);
       }
+      const user = await apiClient.log();
+      console.log(user.data);
+      setUser(user.data);
+
       Swal.fire({
         title: "¡Éxito!",
         text: response.data.msg,
         icon: "success",
         confirmButtonText: "Aceptar",
       });
-      const user = await apiClient.log();
-      console.log(user);
+      navigate("/");
       return;
     } catch (error) {
+      console.log(error);
       Swal.fire({
         title: "¡Error!",
         text: error.response
@@ -48,6 +54,14 @@ const Login = () => {
   const handleChangeLog = (e) => {
     const { name, value } = e.target;
     setFormLog({ ...formLog, [name]: value });
+  };
+
+  const eyeHandler = () => {
+    if (pass === "password") {
+      setPass("text");
+    } else {
+      setPass("password");
+    }
   };
 
   return (
@@ -80,14 +94,28 @@ const Login = () => {
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input
-                type="password"
-                placeholder="password"
-                name="Password"
-                className="input input-bordered"
-                onChange={handleChangeLog}
-                required
-              />
+
+              <div className="mx-0 px-0  w-full max-w-xs relative">
+                <input
+                  type={pass}
+                  name="Password"
+                  placeholder="Ingresa tu contraseña"
+                  className="input input-bordered w-full max-w-xs"
+                  onChange={handleChangeLog}
+                  required
+                />
+                <div className="absolute bottom-2 right-5 z-10">
+                  <label className="swap">
+                    <input type="checkbox" onChange={eyeHandler} />
+                    <div className="swap-on">
+                      <AiFillEye className="text-primary" />
+                    </div>
+                    <div className="swap-off">
+                      <AiFillEyeInvisible className="text-primary" />
+                    </div>
+                  </label>
+                </div>
+              </div>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
@@ -103,6 +131,19 @@ const Login = () => {
               </button>
             </div>
           </form>
+          <div className="flex w-full mx-auto">
+            <div className="grid h-20 flex-grow card rounded-box place-items-center">
+              <Link to={"/register"} className="link text-center">
+                Registrarse
+              </Link>
+            </div>
+
+            <div className="grid h-20 flex-grow card rounded-box place-items-center">
+              <Link to={"/error"} className="link text-center">
+                Olvide mi clave
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
