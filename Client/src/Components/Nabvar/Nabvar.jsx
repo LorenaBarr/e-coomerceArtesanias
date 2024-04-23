@@ -1,6 +1,11 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const Nabvar = () => {
+
+  const handleClickLogout =()=>{
+    localStorage.clear()
+  }
+
   return (
     <div className="navbar bg-accent">
       <div className="flex-1">
@@ -76,7 +81,7 @@ const Nabvar = () => {
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <Link to="/login" onClick={handleClickLogout}>Logout</Link>
             </li>
           </ul>
         </div>

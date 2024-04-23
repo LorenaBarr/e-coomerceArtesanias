@@ -1,11 +1,12 @@
 import React from "react";
 import Home from "./Pages/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 //Páginas
 // import Error404 from "./Pages/Error404";
 
 import Section from "./Pages/Section"; 
+import CombinedLogin from "./Pages/Login";
+
 
 //aquí declaramos las rutas e importamos las páginas ahi deje unos ejemplos con el error 404 pero deberiamos agregar el componente qye corresponda cuando le den a la url que queremos.
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Section />,
       },
+      {
+        path:"/login",
+        element: <CombinedLogin/>
+      }
     ],
   },
   {
