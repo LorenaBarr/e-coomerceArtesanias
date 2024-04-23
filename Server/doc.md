@@ -335,7 +335,7 @@ https://c17-64-n-python-1.onrender.compi/message/list_all/
 
 ## mostrar productos que estan en el carrito: peticion GET: aqui se va a mostrar todos los productos que uno tiene en el carrito, siempre y cuando este logueado:
 
-url
+https://c17-64-n-python-1.onrender.com/api/cart/view_cart/
 
 como salida quedaria de la siguiente manera:
 
@@ -372,7 +372,7 @@ como salida quedaria de la siguiente manera:
 
 ## añadir producto a carrito: PETICION POST: aqui es donde se añaden productos al carrito:
 
-URL
+https://c17-64-n-python-1.onrender.com/api/cart/add_product/
 
 para añadir el producto al carrito se debe enviar lo que es el id_del producto,y la cantidad de la siguiente manera:
 ```javascript
@@ -383,7 +383,8 @@ para añadir el producto al carrito se debe enviar lo que es el id_del producto,
 ```
 
 ## eliminar producto del carrito: PETICION POST: aqui se elimina el producto que quieren del carrito
-url
+
+https://c17-64-n-python-1.onrender.com/api/cart/remove_product/
 
 se envia el id del producto que quiere quitar del carrito
 ```javascript
