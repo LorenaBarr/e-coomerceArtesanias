@@ -126,21 +126,17 @@ const Login = () => {
               <button className="btn btn-primary">
                 <span>Login</span>
                 {loading && (
-                  <span className="loading loading-spinner loading-lg"></span>
+                  <span className="loading loading-dots loading-xs"></span>
                 )}
               </button>
             </div>
           </form>
+          <div className="divider">ó</div>
+
           <div className="flex w-full mx-auto">
             <div className="grid h-20 flex-grow card rounded-box place-items-center">
               <Link to={"/register"} className="link text-center">
                 Registrarse
-              </Link>
-            </div>
-
-            <div className="grid h-20 flex-grow card rounded-box place-items-center">
-              <Link to={"/error"} className="link text-center">
-                Olvide mi clave
               </Link>
             </div>
           </div>

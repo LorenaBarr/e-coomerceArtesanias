@@ -66,7 +66,7 @@ const Register = () => {
               et a id nisi.
             </p>
           </div>
-          <div className="flex flex-col w-full border-opacity-50">
+          <div className="py-10 card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form
               className="flex flex-col justify-between items-center gap-3"
               onSubmit={handleSubmit}
@@ -76,7 +76,7 @@ const Register = () => {
                 type="text"
                 name="Name"
                 placeholder="Ingresa tu nombre"
-                className="input input-bordered input-primary w-full max-w-xs"
+                className="input input-bordered  w-full max-w-xs"
                 onChange={handleChange}
                 required
               />
@@ -84,7 +84,7 @@ const Register = () => {
                 type="text "
                 name="LastName"
                 placeholder="Ingresa tu apellido"
-                className="input input-bordered input-primary w-full max-w-xs"
+                className="input input-bordered  w-full max-w-xs"
                 onChange={handleChange}
                 required
               />
@@ -92,7 +92,7 @@ const Register = () => {
                 type="email"
                 name="Email"
                 placeholder="Ingresa tu mail"
-                className="input input-bordered input-primary w-full max-w-xs"
+                className="input input-bordered  w-full max-w-xs"
                 onChange={handleChange}
                 required
               />
@@ -101,7 +101,7 @@ const Register = () => {
                   type={pass}
                   name="Password"
                   placeholder="Ingresa tu contraseña"
-                  className="input input-bordered input-primary w-full max-w-xs"
+                  className="input input-bordered  w-full max-w-xs"
                   onChange={handleChange}
                   required
                 />
