@@ -44,7 +44,7 @@ class GetProductByName(APIView):
 #crear producto
 class CreateProduct(APIView):
     def post(self, request):
-        if not request.user.is_authenticated:
+        if not request.user.is_authenticated and request.user.is_editor:
             return Response({'message': 'You must be logged in to add items to the cart'})
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():
@@ -55,7 +55,7 @@ class CreateProduct(APIView):
 # crear una categoria
 class CreateCategory(APIView):
     def post(self, request):
-        if not request.user.is_authenticated:
+        if not request.user.is_authenticated and request.user.is_editor:
             return Response({'message': 'You must be logged in to add items to the cart'})
         serializer = CategorySerializer(data=request.data)
         if serializer.is_valid():
@@ -68,7 +68,7 @@ class CreateCategory(APIView):
 # borrar un producto
 class DeleteProduct(APIView):
     def delete(self, request, product_id):
-        if not request.user.is_authenticated:
+        if not request.user.is_authenticated and request.user.is_editor:
             return Response({'message': 'You must be logged in to add items to the cart'})
         try:
             product = Product.objects.get(id=product_id)
@@ -80,7 +80,7 @@ class DeleteProduct(APIView):
 # borrar una categoria
 class DeleteCategory(APIView):
     def delete(self, request, category_id):
-        if not request.user.is_authenticated:
+        if not request.user.is_authenticated and request.user.is_editor:
             return Response({'message': 'You must be logged in to add items to the cart'})
         try:
             category = Category.objects.get(id=category_id)
