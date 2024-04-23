@@ -44,8 +44,8 @@ class GetProductByName(APIView):
 #crear producto
 class CreateProduct(APIView):
     def post(self, request):
-        if not request.user.is_authenticated and request.user.is_editor:
-            return Response({'message': 'You must be logged in to add items to the cart'})
+        #if not request.user.is_authenticated and request.user.is_editor:
+         #   return Response({'message': 'You must be logged in to add items to the cart'})
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
