@@ -22,8 +22,8 @@ const Card = ({ product, onClick }) => {
 Card.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    URL: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired, 
+    URL: PropTypes.string.isRequired, 
   }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
