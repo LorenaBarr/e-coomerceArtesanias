@@ -7,6 +7,8 @@ from apps.product.models import Product
 
 class ViewCart(APIView):
     def get(self, request):
+        if not request.user.is_authenticated:
+            return Response({'message': 'You must be logged in to add items to the cart'})
         # Verificar si el usuario tiene un carrito existente
         user = 1  # Obtener el usuario actual desde la solicitud
 
@@ -44,6 +46,8 @@ class ViewCart(APIView):
     
 class AddToCart(APIView):
     def post(self, request):
+        if not request.user.is_authenticated:
+            return Response({'message': 'You must be logged in to add items to the cart'})
         # Obtener el ID del producto y la cantidad del cuerpo de la solicitud
         product_id = request.data.get('id')
         quantity = request.data.get('quantity', 1)  # Si no se proporciona cantidad, asumimos 1
@@ -78,6 +82,8 @@ class AddToCart(APIView):
 
 class RemoveFromCart(APIView):
     def post(self, request):
+        if not request.user.is_authenticated:
+            return Response({'message': 'You must be logged in to add items to the cart'})
         # Obtener el ID del producto del cuerpo de la solicitud
         product_id = request.data.get('id')
         
