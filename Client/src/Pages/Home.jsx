@@ -31,7 +31,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container">
+    <div className=" ">
       <header>
         {!isLoggedIn && <Login onLogin={handleLogin} />}
         {isLoggedIn && (
@@ -46,7 +46,8 @@ const Home = () => {
           <main className="content">
             <Section />
             <div className="pagination-container">
-              <Pagination />
+              {/* Comentado porque da un error */}
+              {/* <Pagination /> */}
             </div>
           </main>
           <Footer />
