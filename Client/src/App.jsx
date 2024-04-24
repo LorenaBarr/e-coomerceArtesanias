@@ -14,65 +14,65 @@ import Carrito from "./Pages/Carrito";
 
 //aquí declaramos las rutas e importamos las páginas ahi deje unos ejemplos con el error 404 pero deberiamos agregar el componente qye corresponda cuando le den a la url que queremos.
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-    errorElement: <Error404 />,
-    children: [
-      {
-        path: "",
-        index: true,
-        element: <Section />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/about",
-        element: <AboutUs />,
-      },
-      {
-        path: "/products",
-        element: <Products />,
-      },
-      {
-        path: "/carrito",
-        element: <Carrito />,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "*",
-    element: <Error404 />,
-  },
+    {
+        path: "/",
+        element: <Home />,
+        errorElement: <Error404 />,
+        children: [
+            {
+                path: "",
+                index: true,
+                element: <Section />,
+            },
+            {
+                path: "/contact",
+                element: <Contact />,
+            },
+            {
+                path: "/about",
+                element: <AboutUs />,
+            },
+            {
+                path: "/products",
+                element: <Products />,
+            },
+            {
+                path: "/carrito",
+                element: <Carrito />,
+            },
+        ],
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "*",
+        element: <Error404 />,
+    },
 ]);
 
 const App = () => {
-  const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const savedUser = JSON.parse(localStorage.getItem("user"));
-    if (savedUser) {
-      setUser(savedUser);
-    }
-  }, []);
+    useEffect(() => {
+        const savedUser = JSON.parse(localStorage.getItem("user"));
+        if (savedUser) {
+            setUser(savedUser);
+        }
+    }, []);
 
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
+    useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(user));
+    }, [user]);
 
-  return (
-    <>
-      <UserContext.Provider value={{ user, setUser }}>
-        <RouterProvider router={router} />
-      </UserContext.Provider>
-    </>
-  );
+    return (
+        <>
+            <UserContext.Provider value={{ user, setUser }}>
+                <RouterProvider router={router} />
+            </UserContext.Provider>
+        </>
+    );
 };
 
 export default App;
