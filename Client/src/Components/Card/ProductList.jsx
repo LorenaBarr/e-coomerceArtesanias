@@ -5,11 +5,14 @@ import Pagination from "../Pagination/pagination";
 import ProductModal from "../Card/ProductModal";
 
 
+
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+ 
 
   useEffect(() => {
     fetch("https://c17-64-n-python-1.onrender.com/api/product/list_products/")
