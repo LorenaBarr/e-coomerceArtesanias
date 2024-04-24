@@ -1,210 +1,32 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/pagination";
 import ProductModal from "../Card/ProductModal";
 
 
+
 const ProductList = () => {
-    const products = [
-      {
-        id: 1,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 2,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 3,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-
-      {
-        id: 4,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 5,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 6,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-
-      {
-        id: 7,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Catalogo/335_mochila-wayuu-g.png",
-      },
-      {
-        id: 8,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniascolombianas.co/wordpress/wp-content/uploads/2017/11/mochila_wayuu_135_2.jpg",
-      },
-      {
-        id: 9,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-
-      {
-        id: 1,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 2,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 3,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-      {
-        id: 1,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 2,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 3,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-
-      {
-        id: 1,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 2,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 3,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-      {
-        id: 1,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 2,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 3,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-      {
-        id: 1,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 2,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 3,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-      {
-        id: 1,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 2,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 3,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-      {
-        id: 1,
-        name: "Mochila Tejida",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/36552_catalogo-fusagasuga-artesanias-colombia-2020-g.jpg",
-      },
-      {
-        id: 2,
-        name: "Cerámica Oaxaca",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg",
-      },
-      {
-        id: 3,
-        name: "Clay vase",
-        price: 49.99,
-        imageUrl: "https://artesaniasdecolombia.com.co/Documentos/Glosario/38569_cuidado-artesanias-colombia-raquira.jpg",
-      },
-    ];
-  
-    const itemsPerRow = 3;
-  const rowsPerPage = 2;
-  const itemsPerPage = itemsPerRow * rowsPerPage;
+  const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(products.length / itemsPerPage);
   const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+
+ 
+
+  useEffect(() => {
+    fetch("https://c17-64-n-python-1.onrender.com/api/product/list_products/")
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error("Error fetching products:", error));
+  }, []);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(products.length / itemsPerPage);
   const paginatedProducts = products.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
@@ -221,33 +43,22 @@ const ProductList = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center">
-      {/* Renderizar las tarjetas de productos */}
-      {paginatedProducts.map((product) => (
-        <Card key={product.id} product={product} onClick={handleCardClick} />
-      ))}
-
-      {/* Rellenar las tarjetas faltantes para mantener la estructura */}
-      {Array(itemsPerRow - (paginatedProducts.length % itemsPerRow))
-        .fill(null)
-        .map((_, index) => (
-          <div className="w-1/3" key={index}></div>
+    <div className="container mx-auto p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {paginatedProducts.map((product) => (
+          <Card key={product.id} product={product} onClick={handleCardClick} />
         ))}
+      </div>
 
-      {/* Renderizar el modal si showModal es true */}
-      {showModal && (
-        <ProductModal
-          product={selectedProduct}
-          onClose={handleCloseModal}
+      {showModal && <ProductModal product={selectedProduct} onClose={handleCloseModal} />}
+
+      <div className="flex justify-center mt-8">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
         />
-      )}
-
-      {/* Renderizar la paginación */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      </div>
     </div>
   );
 };

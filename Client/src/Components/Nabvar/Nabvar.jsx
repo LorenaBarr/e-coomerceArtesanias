@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 const Nabvar = () => {
     const handleClickLogout = () => {
         localStorage.clear();
-        window.location.reload();
+        // window.location.reload();
     };
 
     return (
         <div className="navbar bg-accent">
             <div className="flex-1">
-                <a className="text-xl">ARTESANIAS EXPRESS</a>
+                <a className="btn btn-ghost text-xl">ARTESANIAS EXPRESS</a>
             </div>
             <div className="flex-none gap-2">
                 <div className="form-control">
@@ -54,9 +54,12 @@ const Nabvar = () => {
                             <span className="font-bold text-lg">8 Items</span>
                             <span className="text-info">Subtotal: $999</span>
                             <div className="card-actions">
-                                <button className="btn btn-primary btn-block">
+                                <Link
+                                    to="/carrito"
+                                    className="btn btn-primary btn-block"
+                                >
                                     View cart
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -90,7 +93,7 @@ const Nabvar = () => {
                         </li>
                         <li>
                             <Link to="/login" onClick={handleClickLogout}>
-                                Logout
+                                Cerrar sesion
                             </Link>
                         </li>
                     </ul>

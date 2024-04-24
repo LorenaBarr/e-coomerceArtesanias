@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import environ
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,7 +78,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
-        default='postgres://admin:p7iuYZ4ItvxjymS5q2tspLiZGECeyrLz@dpg-cofks4v79t8c73c5kt9g-a.oregon-postgres.render.com/artesania',
+        default='postgres://admin:O0HsPjvRD1hFgg9MFF2RwKHKGUzuxf9c@dpg-coit4gv79t8c738mq0n0-a.oregon-postgres.render.com/artesania_d24w',
         conn_max_age=600
     )
 }

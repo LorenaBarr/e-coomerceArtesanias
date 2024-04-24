@@ -1,198 +1,162 @@
-import React, { useState } from "react";
-import { TEInput, TERipple } from "tw-elements-react";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ApiClient } from "../api/services";
+import Swal from "sweetalert2";
+import UserContext from "../context/UserContext";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-const CombinedLogin = ({ onLogin }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(email);
-        console.log(password);
+const Login = () => {
+    const { user, setUser } = useContext(UserContext);
+    const apiClient = new ApiClient();
+    const [pass, setPass] = useState("password");
+    const [loading, setLoading] = useState(false);
+    const [formLog, setFormLog] = useState({
+        Email: "",
+        Password: "",
+    });
+    const navigate = useNavigate();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         try {
-            const response = await fetch(
-                "https://c17-64-n-python-1.onrender.com/api/user/login/",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        Email: email,
-                        Password: password,
-                    }),
-                }
-            );
-
-            const data = await response.json();
-
-            if (response.ok) {
-                // Si la respuesta es exitosa, llama a la función onLogin con los datos del usuario
-                const { user_id, user, token } = data;
-                localStorage.setItem("token", token);
-                onLogin(user_id, user, token);
-            } else {
-                // Si la respuesta no es exitosa, muestra un mensaje de error
-                setError(data.message);
+            setLoading(true);
+            const response = await apiClient.login(formLog);
+            if (response?.data?.token) {
+                localStorage.setItem("token", response.data.token);
             }
+            const user = await apiClient.log();
+            console.log(user.data);
+            setUser(user.data);
+
+            Swal.fire({
+                title: "¡Éxito!",
+                text: response.data.msg,
+                icon: "success",
+                confirmButtonText: "Aceptar",
+            });
+            navigate("/");
+            return;
         } catch (error) {
-            console.error("Error al iniciar sesión:", error);
-            setError("Error al iniciar sesión. Por favor, inténtalo de nuevo.");
+            console.log(error);
+            Swal.fire({
+                title: "¡Error!",
+                text: error.response
+                    ? error.response.data.msg
+                    : "☹ ups.. algo fallo, intente más tarde",
+                icon: "error",
+                confirmButtonText: "Aceptar",
+            });
+        } finally {
+            setLoading(false);
         }
     };
-    console.log("LOGIN PAGE");
+
+    const handleChangeLog = (e) => {
+        const { name, value } = e.target;
+        setFormLog({ ...formLog, [name]: value });
+    };
+
+    const eyeHandler = () => {
+        if (pass === "password") {
+            setPass("text");
+        } else {
+            setPass("password");
+        }
+    };
+
     return (
-        <section className="h-screen bg-[#dc8850] overflow-y-hidden">
-            <div className="h-full">
-                <div className="g-6 flex h-full flex-col items-center justify-center">
-                    {/* Left column container with background */}
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex-col lg:flex-row ">
+                <div className="text-center lg:text-left lg:w-1/2">
+                    <h1 className="text-5xl font-bold">Artesania Express</h1>
+                    <p className="py-6">
+                        “Descubre la belleza de lo hecho a mano, donde cada
+                        detalle cuenta.”
+                    </p>
+                    <img
+                        src="https://artesaniasdecolombia.com.co/Documentos/Contenido/40781_40781_40781_fortalecimiento-artesanal-cundinamarca-artesanias-colombia-2022-g.jpeg"
+                        alt="Artesanías"
+                        className="w-full h-auto lg:max-w-md rounded-lg"
+                    />
+                </div>
+                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 lg:w-1/2">
+                    <form className="card-body" onSubmit={handleSubmit}>
+                        <div className="form-control">
+                            <h1 className="text-3xl font-bold">
+                                Iniciar Sesion
+                            </h1>
+                            <label className="label">
+                                <span className="label-text">Correo</span>
+                            </label>
+                            <input
+                                type="email"
+                                placeholder="Ingresa tu email"
+                                name="Email"
+                                className="input input-bordered"
+                                onChange={handleChangeLog}
+                                required
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Contraseña</span>
+                            </label>
 
-                    <div className="shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12">
-                        <img
-                            src="PEPA2.png"
-                            className="w-full h-[400px] aspect-video object-contain"
-                            alt="Sample image"
-                            width={400}
-                            height={400}
-                        />
-                    </div>
-
-                    {/* Right column container */}
-                    <div className="mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12">
-                        <form onSubmit={handleSubmit} className="text-black">
-                            {/* Sign in section */}
-                            <div className="flex flex-row items-center justify-center">
-                                <p className="mb-0 mr-4 text-lg"></p>
-
-                                {/* Facebook button */}
-                                <TERipple rippleColor="light">
-                                    <button
-                                        type="button"
-                                        className="mx-1 h-9 w-9 rounded-full bg-primary uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                                    >
-                                        {/* Facebook */}
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="mx-auto h-3.5 w-3.5"
-                                            fill="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
-                                        </svg>
-                                    </button>
-                                </TERipple>
-
-                                {/* Twitter button */}
-                                <TERipple rippleColor="light">
-                                    <button
-                                        type="button"
-                                        className="mx-1 h-9 w-9 rounded-full bg-primary uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                                    >
-                                        {/* Twitter */}
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="mx-auto h-3.5 w-3.5"
-                                            fill="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                                        </svg>
-                                    </button>
-                                </TERipple>
-
-                                {/* Linkedin button */}
-                                <TERipple rippleColor="light">
-                                    <button
-                                        type="button"
-                                        className="mx-1 h-9 w-9 rounded-full bg-primary uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                                    >
-                                        {/* Linkedin */}
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="mx-auto h-3.5 w-3.5"
-                                            fill="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-                                        </svg>
-                                    </button>
-                                </TERipple>
-                            </div>
-                            {/* Separator between social media sign in and email/password sign in */}
-                            <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-                                <p className="mx-4 mb-0 text-center font-semibold dark:text-black">
-                                    Or
-                                </p>
-                            </div>
-                            {/* Email input */}
-                            <div className="bg-red w-full">
-                                <label>
-                                    Correo electronico
-                                    <input
-                                        type="email"
-                                        className="mb-4 text-black px-3 w-full ring-2 rounded-[1rem] ring-[#fda062] outline-none"
-                                        value={email}
-                                        onChange={(e) =>
-                                            setEmail(e.target.value)
-                                        }
-                                        required
-                                    />
-                                </label>
-                            </div>
-                            {/* Password input */}
-                            <div>
-                                <label>
-                                    Contraseña
-                                    <input
-                                        type="password"
-                                        className="mb-4 text-black px-3 w-full ring-2 rounded-[1rem] ring-[#dc8850] outline-none"
-                                        size="lg"
-                                        value={password}
-                                        onChange={(e) =>
-                                            setPassword(e.target.value)
-                                        }
-                                        required
-                                    />
-                                </label>
-                            </div>
-                            {/* Error message */}
-                            {error && <p className="text-red-500">{error}</p>}
-                            <div className="mb-6 flex items-center justify-between">
-                                {/* Remember me checkbox */}
-                                <div className="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                                    <input
-                                        className="relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                        type="checkbox"
-                                        value=""
-                                        id="rememberMe"
-                                    />
-                                    <label
-                                        className="inline-block pl-[0.15rem] hover:cursor-pointer"
-                                        htmlFor="rememberMe"
-                                    >
-                                        Remember me
+                            <div className="mx-0 px-0  w-full max-w-xs relative">
+                                <input
+                                    type={pass}
+                                    name="Password"
+                                    placeholder="Ingresa tu contraseña"
+                                    className="input input-bordered w-full max-w-xs"
+                                    onChange={handleChangeLog}
+                                    required
+                                />
+                                <div className="absolute bottom-2 right-5 z-10">
+                                    <label className="swap">
+                                        <input
+                                            type="checkbox"
+                                            onChange={eyeHandler}
+                                        />
+                                        <div className="swap-on">
+                                            <AiFillEye className="text-primary" />
+                                        </div>
+                                        <div className="swap-off">
+                                            <AiFillEyeInvisible className="text-primary" />
+                                        </div>
                                     </label>
                                 </div>
-
-                                {/* Forgot password link */}
-                                <a href="#!">Forgot password?</a>
                             </div>
-                            {/* Login button */}
-                            <div className="text-center">
-                                <button
-                                    type="submit"
-                                    className="bg-white px-6 py-2 rounded-lg hover:bg-[#fba871]"
+                            <label className="label">
+                                <a
+                                    href="#"
+                                    className="label-text-alt link link-hover"
                                 >
-                                    Login
-                                </button>
-                            </div>
-                        </form>
+                                    ¿Olvidaste tu contraseña?
+                                </a>
+                            </label>
+                        </div>
+                        <div className="form-control mt-6">
+                            <button className="btn btn-primary">
+                                <span>Login</span>
+                                {loading && (
+                                    <span className="loading loading-dots loading-xs"></span>
+                                )}
+                            </button>
+                        </div>
+                    </form>
+                    <div className="divider">ó</div>
+
+                    <div className="flex w-full mx-auto">
+                        <div className="grid h-20 flex-grow card rounded-box place-items-center">
+                            <Link to={"/register"} className="link text-center">
+                                Registrarse
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     );
 };
 
-export default CombinedLogin;
+export default Login;
