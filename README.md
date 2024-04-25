@@ -23,6 +23,7 @@ Nuestra plantilla de E-Commerce está diseñada para adaptarse a las necesidades
 
 ### Integrantes del Equipo:
 
+- **Julio Segundo Eduardo Maquera**: Desarrolladora frontend - https://www.linkedin.com/in/julio-eduardo-maquera-49a44a2b4/
 - **Gabriela Peralta**: Desarrolladora backend - https://www.linkedin.com/in/gabriela-peralta54223/
 - **Samsa Ahuerma**: Desarrolladora backend - https://www.linkedin.com/in/samsaahuerma/
 - **[Nombre del integrante]**: Desarrollador frontend
