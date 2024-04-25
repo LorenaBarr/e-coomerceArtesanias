@@ -36,4 +36,8 @@ export class ApiClient {
   async getAllProductos() {
     return this.client.get(`/api/product/list-all-products/`);
   }
+
+  async carGetProduct(formLog) {
+    return this.client.post(`/api/cart/add_product/`, formLog);
+  }
 }
