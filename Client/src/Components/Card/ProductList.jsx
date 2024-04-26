@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
-import Card from "../Card/Card";
+import Card from "../Products/Card";
 import Pagination from "../Pagination/pagination";
 import ProductModal from "../Card/ProductModal";
 

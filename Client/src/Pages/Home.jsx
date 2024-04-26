@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Login from "../Pages/Login"; // Importa tu componente Login
 import Navbar from "../Components/Nabvar/Nabvar";
 import Footer from "../Components/Footer/Footer";
@@ -36,7 +36,7 @@ const Home = () => {
                     </>
                 )}
             </header>
-            <main className="CONTENIDO_GENERAL h-[100rem]">
+            <main className="">
                 <Outlet />
             </main>
             <Footer />

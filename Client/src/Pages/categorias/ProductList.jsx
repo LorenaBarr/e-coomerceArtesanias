@@ -16,7 +16,7 @@ const ProductList = ({ products, productsFiltered }) => {
     console.log("LISTA DE PRODUCTOS", products);
     const itemsPerPage = 6;
     const totalPages = Math.ceil(products.length / itemsPerPage);
-    const paginatedProducts = products.slice(
+    const paginatedProducts = productsFiltered.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );

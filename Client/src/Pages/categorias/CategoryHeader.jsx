@@ -4,7 +4,7 @@ import { categorias } from "../../constants/api_keys";
 const CategoryHeader = ({ products, setProductsFiltered }) => {
     const handleChangeCategory = () => {
         const category = document.getElementById("category")?.value;
-        if (category === 0 || category === null) setProductsFiltered(products);
+        if (category === 0 || category === "0") setProductsFiltered(products);
         const filteredProducts = products.filter(
             (product) => product.category === parseInt(category)
         );

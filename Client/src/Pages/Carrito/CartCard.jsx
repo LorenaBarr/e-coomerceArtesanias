@@ -10,10 +10,10 @@ const CartCard = ({ product }) => {
         localStorage.setItem("cart", JSON.stringify(newCart));
     };
     return (
-        <article className="flex">
+        <article className="flex border-b-[1px] border-slate-400 py-1 my-2">
             <figure>
                 <img
-                    className="object-cover object-center h-[100px] w-[200px] p-1 rounded-[2rem] hover:scale-105 duration-500"
+                    className="object-cover object-center h-[100px] w-[200px] hover:scale-105 duration-500"
                     src={product.URL}
                     alt={product.name}
                     width={200}
