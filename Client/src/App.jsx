@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import UserContext from "./context/UserContext";
 import Home from "./Pages/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -11,7 +11,7 @@ import Contact from "./Pages/Contact";
 import AboutUs from "./Pages/AboutUs";
 import Categories from "./Pages/categorias/Categories";
 import Register from "./Pages/Register";
-import Carrito from "./Pages/Carrito";
+import Carrito from "./Pages/Carrito/Carrito";
 
 //aquí declaramos las rutas e importamos las páginas ahi deje unos ejemplos con el error 404 pero deberiamos agregar el componente qye corresponda cuando le den a la url que queremos.
 const router = createBrowserRouter([
@@ -37,6 +37,10 @@ const router = createBrowserRouter([
                 path: "/products",
                 element: <Categories />,
             },
+            {
+                path: "/cart",
+                element: <Carrito />,
+            },
         ],
     },
     {
@@ -55,7 +59,9 @@ const router = createBrowserRouter([
 
 const App = () => {
     const [user, setUser] = useState(null);
-
+    const [cart, setCart] = useState([]);
+    console.log("Usuario", user);
+    console.log("Carrito", cart);
     useEffect(() => {
         const savedUser = JSON.parse(localStorage.getItem("user"));
         if (savedUser) {
@@ -67,9 +73,15 @@ const App = () => {
         localStorage.setItem("user", JSON.stringify(user));
     }, [user]);
 
+    useEffect(() => {
+        const savedCart = JSON.parse(localStorage.getItem("cart"));
+        if (savedCart) {
+            setCart(savedCart);
+        }
+    }, []);
     return (
         <>
-            <UserContext.Provider value={{ user, setUser }}>
+            <UserContext.Provider value={{ user, setUser, cart, setCart }}>
                 <RouterProvider router={router} />
             </UserContext.Provider>
         </>
