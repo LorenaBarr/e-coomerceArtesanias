@@ -11,8 +11,8 @@ const Login = () => {
     const [pass, setPass] = useState("password");
     const [loading, setLoading] = useState(false);
     const [formLog, setFormLog] = useState({
-        Email: "",
-        Password: "",
+        Email: "juan@example.com",
+        Password: "contraseña_segura",
     });
     const navigate = useNavigate();
     const handleSubmit = async (event) => {
@@ -95,6 +95,7 @@ const Login = () => {
                                 className="input input-bordered"
                                 onChange={handleChangeLog}
                                 required
+                                value={formLog.Email}
                             />
                         </div>
                         <div className="form-control">
@@ -110,6 +111,7 @@ const Login = () => {
                                     className="input input-bordered w-full max-w-xs"
                                     onChange={handleChangeLog}
                                     required
+                                    value={formLog.Password}
                                 />
                                 <div className="absolute bottom-2 right-5 z-10">
                                     <label className="swap">
