@@ -1,10 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../../context/UserContext";
+import UserLogin from "./UserLogin";
 
 const Nabvar = () => {
-    const handleClickLogout = () => {
-        localStorage.clear();
-        // window.location.reload();
-    };
+    const { user, setUser } = useContext(UserContext);
 
     return (
         <div className="navbar bg-accent">
@@ -64,40 +64,13 @@ const Nabvar = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className="dropdown dropdown-end">
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        className="btn btn-ghost btn-circle avatar"
-                    >
-                        <div className="w-10 rounded-full">
-                            <img
-                                alt="Tailwind CSS Navbar component"
-                                src="https://userpic.codeforces.org/3541583/title/5479f16d18c204ee.jpg"
-                            />
-                        </div>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-                    >
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>Settings</a>
-                        </li>
-                        <li>
-                            <Link to="/login" onClick={handleClickLogout}>
-                                Cerrar sesion
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
+                {user ? (
+                    <UserLogin />
+                ) : (
+                    <Link to={"/login"} className="btn btn-primary">
+                        Ingresar
+                    </Link>
+                )}
             </div>
         </div>
     );

@@ -66,8 +66,8 @@ const Login = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row ">
-                <div className="text-center lg:text-left lg:w-1/2">
+            <div className="hero-content flex-col lg:flex-row w-full">
+                <div className="text-center lg:text-left lg:w-1/2 hidden lg:block">
                     <h1 className="text-5xl font-bold">Artesania Express</h1>
                     <p className="py-6">
                         “Descubre la belleza de lo hecho a mano, donde cada
@@ -79,8 +79,8 @@ const Login = () => {
                         className="w-full h-auto lg:max-w-md rounded-lg"
                     />
                 </div>
-                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 lg:w-1/2">
-                    <form className="card-body" onSubmit={handleSubmit}>
+                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <form className="card-body " onSubmit={handleSubmit}>
                         <div className="form-control">
                             <h1 className="text-3xl font-bold">
                                 Iniciar Sesion
@@ -145,13 +145,13 @@ const Login = () => {
                         </div>
                     </form>
                     <div className="divider">ó</div>
-
-                    <div className="flex w-full mx-auto">
-                        <div className="grid h-20 flex-grow card rounded-box place-items-center">
-                            <Link to={"/register"} className="link text-center">
-                                Registrarse
-                            </Link>
-                        </div>
+                    <div className="flex justify-evenly pb-6">
+                        <Link to={"/register"} className="link text-center">
+                            Registrarse
+                        </Link>
+                        <Link to={"/"} className="link text-center">
+                            Volver a inicio
+                        </Link>
                     </div>
                 </div>
             </div>
