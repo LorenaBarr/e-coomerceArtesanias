@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 // import ProductModal from "../../Components/Card/ProductModal";
 import Pagination from "../../Components/Pagination/pagination";
 import Card from "../../Components/Products/Card";
@@ -33,10 +33,10 @@ const ProductList = ({ products, productsFiltered }) => {
     return (
         <div className="container mx-auto p-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {productsFiltered.length === 0 ? (
+                {paginatedProducts.length === 0 ? (
                     <div className="text-center">No hay productos</div>
                 ) : (
-                    productsFiltered?.map((product) => (
+                    paginatedProducts?.map((product) => (
                         <Card
                             key={product.id}
                             product={product}
