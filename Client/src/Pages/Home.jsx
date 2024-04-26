@@ -10,23 +10,18 @@ const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        // Verificar si existe un token en el almacenamiento local al cargar la página
         const token = localStorage.getItem("token");
         if (token) {
             setIsLoggedIn(true);
         }
-    }, []); // El segundo argumento [] indica que este efecto solo se ejecuta una vez al cargar la página
+    }, []);
 
-    // Función para manejar la lógica de inicio de sesión
     const handleLogin = () => {
         setIsLoggedIn(true);
     };
 
-    // Función para manejar la lógica de cierre de sesión
     const handleLogout = () => {
-        // Eliminar el token del almacenamiento local
         localStorage.removeItem("token");
-        // Actualizar el estado para indicar que el usuario ha cerrado sesión
         setIsLoggedIn(false);
     };
 
