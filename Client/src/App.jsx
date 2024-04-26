@@ -9,7 +9,7 @@ import Section from "./Pages/Section";
 import Login from "./Pages/Login";
 import Contact from "./Pages/Contact";
 import AboutUs from "./Pages/AboutUs";
-import Products from "./Pages/Products";
+import Categories from "./Pages/categorias/Categories";
 import Register from "./Pages/Register";
 import Carrito from "./Pages/Carrito";
 
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/products",
-                element: <Products />,
+                element: <Categories />,
             },
         ],
     },

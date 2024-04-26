@@ -31,7 +31,7 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className="h-screen overflow-y-auto">
             <header>
                 {!isLoggedIn && <Login onLogin={handleLogin} />}
                 {isLoggedIn && (
@@ -41,7 +41,7 @@ const Home = () => {
                     </>
                 )}
             </header>
-            <main className="content">
+            <main className="CONTENIDO_GENERAL h-[100rem]">
                 <Outlet />
             </main>
             <Footer />
