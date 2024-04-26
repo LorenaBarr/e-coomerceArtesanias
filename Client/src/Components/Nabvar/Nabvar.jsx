@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
-
+import UserContext from "../../context/UserContext";
+import { useContext, useEffect, useState } from "react";
 const Nabvar = () => {
     const handleClickLogout = () => {
         localStorage.clear();
         // window.location.reload();
     };
-
+    const [totalCart, setTotalCart] = useState(0);
+    const { cart } = useContext(UserContext);
+    useEffect(() => {
+        const total = cart.reduce((acc, product) => {
+            return acc + product.price * product.quantity;
+        }, 0);
+        console.log(total);
+        setTotalCart(total);
+    }, [cart]);
     return (
         <div className="navbar bg-accent">
             <div className="flex-1">
@@ -42,7 +51,7 @@ const Nabvar = () => {
                                 />
                             </svg>
                             <span className="badge badge-sm indicator-item">
-                                8
+                                {cart.length}
                             </span>
                         </div>
                     </div>
@@ -51,14 +60,18 @@ const Nabvar = () => {
                         className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
                     >
                         <div className="card-body">
-                            <span className="font-bold text-lg">8 Items</span>
-                            <span className="text-info">Subtotal: $999</span>
+                            <span className="font-bold text-lg">
+                                {cart.length} Items
+                            </span>
+                            <span className="text-info">
+                                Subtotal: ${totalCart}
+                            </span>
                             <div className="card-actions">
                                 <Link
-                                    to="/carrito"
+                                    to="/cart"
                                     className="btn btn-primary btn-block"
                                 >
-                                    View cart
+                                    Ver
                                 </Link>
                             </div>
                         </div>
