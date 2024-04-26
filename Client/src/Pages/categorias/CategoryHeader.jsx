@@ -1,18 +1,20 @@
-import React from "react";
-import Nabvar from "../../Components/Nabvar/Nabvar";
-import Footer from "../../Components/Footer/Footer";
-import Menu from "../../Components/Nabvar/Menu";
+/* eslint-disable react/prop-types */
 import { categorias } from "../../constants/api_keys";
 
-const CategoryHeader = ({ setFilterWord, filterWord }) => {
+const CategoryHeader = ({ products, setProductsFiltered }) => {
     const handleChangeCategory = () => {
-        
+        const category = document.getElementById("category")?.value;
+        if (category === 0 || category === null) setProductsFiltered(products);
+        const filteredProducts = products.filter(
+            (product) => product.category === parseInt(category)
+        );
+        setProductsFiltered(filteredProducts);
     };
+
     return (
         <div className="p-4">
             <h2 className="text-3xl font-bold mb-4">Lista Productos</h2>
             <div className="section-content">
-                {/* Selector de categorías */}
                 <div className="mb-4">
                     <label htmlFor="category" className="mr-2">
                         Categoría:
@@ -21,10 +23,11 @@ const CategoryHeader = ({ setFilterWord, filterWord }) => {
                         id="category"
                         className="border rounded-md p-2 capitalize"
                         onChange={handleChangeCategory}
-                        value={filterWord}
+                        defaultValue={0}
                     >
+                        <option value={0}>Todas</option>
                         {categorias.map((category, index) => (
-                            <option key={index} value={category}>
+                            <option key={index} value={category.id}>
                                 {category.name}
                             </option>
                         ))}
