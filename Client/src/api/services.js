@@ -1,43 +1,47 @@
 import axios from "axios";
 
 export class ApiClient {
-  client;
+    client;
 
-  constructor() {
-    const headers = {
-      "Content-Type": "application/json; charset=UTF-8",
-    };
+    constructor() {
+        const headers = {
+            "Content-Type": "application/json; charset=UTF-8",
+        };
 
-    // Verificar si hay un token en el localStorage
-    const token = localStorage.getItem("token");
-    if (token) {
-      headers["Authorization"] = `Bearer ${token}`;
+        // Verificar si hay un token en el localStorage
+        const token = localStorage.getItem("token");
+        if (token) {
+            headers["Authorization"] = `Bearer ${token}`;
+        }
+
+        this.client = axios.create({
+            baseURL: import.meta.env.VITE_BACKEND,
+            headers: headers,
+        });
     }
 
-    this.client = axios.create({
-      baseURL: import.meta.env.VITE_BACKEND,
-      headers: headers,
-    });
-  }
+    //si quisieras hacer otra petición cualquiera la harias asi, solo cambia el verbo http y el endpoint que nos brinde el backend
+    async login(formLog) {
+        return this.client.post(`/api/user/login/`, formLog);
+    }
 
-  //si quisieras hacer otra petición cualquiera la harias asi, solo cambia el verbo http y el endpoint que nos brinde el backend
-  async login(formLog) {
-    return this.client.post(`/api/user/login/`, formLog);
-  }
+    async log() {
+        return this.client.get(`api/user/profile/`);
+    }
 
-  async log() {
-    return this.client.get(`api/user/profile/`);
-  }
+    async register(formLog) {
+        return this.client.post(`/api/user/register/`, formLog);
+    }
 
-  async register(formLog) {
-    return this.client.post(`/api/user/register/`, formLog);
-  }
+    async logout() {
+        return this.client.post(`/api/user/logout/`);
+    }
 
-  async getAllProductos() {
-    return this.client.get(`/api/product/list-all-products/`);
-  }
+    async getAllProductos() {
+        return this.client.get(`/api/product/list-all-products/`);
+    }
 
-  async carGetProduct(formLog) {
-    return this.client.post(`/api/cart/add_product/`, formLog);
-  }
+    async carGetProduct(formLog) {
+        return this.client.post(`/api/cart/add_product/`, formLog);
+    }
 }

@@ -1,28 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import UserContext from "../../context/UserContext";
+import Swal from "sweetalert2";
+import { ApiClient } from "../../api/services";
 
 const UserLogin = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        // Verificar si existe un token en el almacenamiento local al cargar la página
-        const token = localStorage.getItem("token");
-        if (token) {
-            setIsLoggedIn(true);
-        }
-    }, []); // El segundo argumento [] indica que este efecto solo se ejecuta una vez al cargar la página
-
-    // Función para manejar la lógica de inicio de sesión
-    const handleLogin = () => {
-        setIsLoggedIn(true);
-    };
-
+    const apiClient = new ApiClient();
+    const { setUser } = useContext(UserContext);
     // Función para manejar la lógica de cierre de sesión
-    const handleLogout = () => {
-        // Eliminar el token del almacenamiento local
-        localStorage.removeItem("token");
-        // Actualizar el estado para indicar que el usuario ha cerrado sesión
-        setIsLoggedIn(false);
+    const destroySesion = async () => {
+        const response = await apiClient.logout();
+        setUser(null);
+    };
+    const handleLogout = async () => {
+        Swal.fire({
+            title: "Estas seguro que quiere cerrar sesión?",
+            text: "si cierra sesión no podrá seguir agregando productos al carrito",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Cerrar Sesión",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                destroySesion();
+                localStorage.removeItem("token");
+                Swal.fire({
+                    title: "Hasta pronto",
+                    text: "Cerraste exitosamente tu cuenta",
+                    icon: "success",
+                });
+            }
+        });
     };
     return (
         <div className="dropdown dropdown-end">
@@ -52,7 +60,7 @@ const UserLogin = () => {
                     <a>Settings</a>
                 </li>
                 <li>
-                    <Link to="/login">Cerrar sesion</Link>
+                    <button onClick={handleLogout}>Cerrar sesion</button>
                 </li>
             </ul>
         </div>
